@@ -7,7 +7,8 @@ public class NewThread extends Thread {
     public NewThread(int startNum) {
         this.startNum = startNum;
     }
-
+    
+    @Override
     public void run() {
         int currentNum = startNum;
         int lastNum = 10;
