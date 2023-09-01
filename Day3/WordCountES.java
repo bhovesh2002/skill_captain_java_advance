@@ -36,8 +36,8 @@ public class WordCountES implements Runnable{
         executorService.submit(new WordCountES(dirPath+"\\World.txt"));
         executorService.submit(new WordCountES(dirPath+"\\Again.txt"));
         executorService.submit(new WordCountES(dirPath+"\\How.txt"));
-        executorService.submit(new WordCountES(dirPath+"\\Long.txt"));
-        executorService.submit(new WordCountES(dirPath+"\\Do.txt"));
+        executorService.submit(new WordCountES(dirPath+"\\Much.txt"));
+        executorService.submit(new WordCountES(dirPath+"\\More.txt"));
 
         executorService.shutdown();
 
