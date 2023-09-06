@@ -13,7 +13,7 @@ public class UserData {
 
     public void getDetails(){
         System.out.println("Username: " + username);
-        System.out.println("Password" + password);
+        System.out.println("Password: " + password);
         System.out.println("Time the session lasted for: " + timeLimit);
     }
 }
