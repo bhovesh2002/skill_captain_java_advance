@@ -5,16 +5,17 @@ import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
 
+
 public class Main {
 
+    //just so that I can keep something as key for the map
     private static int id = 1;
 
-    private static ThreadLocal<Map<Integer, UserData>> threadLocalMap = new ThreadLocal<>(){
+    //creates an empty hashmap
+    private static ThreadLocal<Map<Integer, Day8.UserData>> threadLocalMap = new ThreadLocal<>(){
         @Override
-        protected Map<Integer, UserData> initialValue(){
-            Map<Integer, UserData> info = new HashMap<>();
-//            UserData userData = new UserData("defaultUser", "defaultPassword");
-//            info.put(userData, 0);
+        protected Map<Integer, Day8.UserData> initialValue(){
+            Map<Integer, Day8.UserData> info = new HashMap<>();
             return info;
         }
     };
@@ -22,6 +23,7 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        //creates 5 threads and calls instantiate and then print the details
         for(int i = 1; i<5 ; i++){
             Thread thread = new Thread(() -> {
                 try {
@@ -33,15 +35,17 @@ public class Main {
                 }
             });
             thread.start();
+            sc.close();
         }
     }
 
+    //gets the threadLocalMap and then creates a separate map for each thread which only contains 1 key and value
     public static void instantiate(Scanner sc) throws InputMismatchException, InterruptedException {
-//        Map<Integer, UserData> info = threadLocalMap.get();
-        System.out.println("Enter username: ");
-        String username = sc.nextLine();
-        System.out.println("Enter password");
-        String password = sc.nextLine();
+        Map<Integer, Day8.UserData> info = threadLocalMap.get();
+        System.out.println("Entering username ... ");
+        String username = "Name: "+Thread.currentThread().getName();
+        System.out.println("Entering password ... ");
+        String password = "password: "+Thread.currentThread().getName();
 
         int min = 1;
         int max = 10;
@@ -50,11 +54,13 @@ public class Main {
         Thread.sleep(total);
         int currentId = id;
 
-//        info.put(currentId, new UserData(username, password, total));
-//        threadLocalMap.set(info);
+        info.put(currentId, new Day8.UserData(username, password, total));
+        threadLocalMap.set(info);
     }
 
-    public static void printDetails(Map<Integer, UserData> infoMap){
+    //prints details of each map by calling function from userData class
+    public static void printDetails(Map<Integer, Day8.UserData> infoMap){
+        System.out.println("---- print -----");
         infoMap.get(1).getDetails();
     }
 
