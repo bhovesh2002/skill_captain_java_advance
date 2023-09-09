@@ -11,13 +11,13 @@ public class CustomerThread extends Thread{
 
     public void run() {
         // Add items to cart
-        cart.addItem(getName() + " added item 1");
-        cart.addItem(getName() + " added item 2");
-        cart.addItem(getName() + " added item 3");
+        cart.addItem("Noodles");
+        cart.addItem("Biscuits");
+        cart.addItem("Cold Drink");
 
         // Remove items from cart
-        cart.removeItem(getName() + " added item 1");
-        cart.removeItem(getName() + " added item 2");
+        cart.removeItem("Biscuits");
+        cart.removeItem("Cold Drink");
     }
 
 }
