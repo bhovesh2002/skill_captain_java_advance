@@ -1,26 +1,26 @@
 package Day9;
 
-public class Main {
+import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
-    public static void main(String[] args) throws InterruptedException {
-        // Create a shared shopping cart
-        ShoppingCart cart = new ShoppingCart();
+public class ShoppingCart {
 
-        // Create some customer threads
-        CustomerThread c1 = new CustomerThread(cart, "Customer 1");
-        CustomerThread c2 = new CustomerThread(cart, "Customer 2");
-        CustomerThread c3 = new CustomerThread(cart, "Customer 3");
+    private CopyOnWriteArrayList<String> items;
 
-        c1.start();
-        c2.start();
-        c3.start();
-
-        c1.join();
-        c2.join();
-        c3.join();
-
-        // print the cart items
-        System.out.println(cart.getItems());
+    //constructor
+    public ShoppingCart() {
+        items = new CopyOnWriteArrayList<String>();
     }
 
+    public void addItem(String item) {
+        items.add(item);
+    }
+
+    public void removeItem(String item) {
+        items.remove(item);
+    }
+
+    public CopyOnWriteArrayList<String> getItems() {
+        return items;
+    }
 }
